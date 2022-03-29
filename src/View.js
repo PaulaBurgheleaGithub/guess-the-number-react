@@ -1,27 +1,39 @@
 export default function View(props) {
-  return (
-    <>
-      <h1>Guess the number game</h1>
-      <p>
-        Welcome to the Guess the number game! Please press StartGame and follow
-        the instruction.
-      </p>
+  if (props.difficulty) {
+    return (
       <div>
         <input
-          onChange={props.onChange}
+          onChange={props.onInit}
           type="number"
           className="numberInp"
           placeholder="enter a number"
         />
 
-        <button onClick={props.onClick} className="startBtn">
+        <button onClick={props.start} className="startBtn">
           Start Game
         </button>
-        <button onGuess={props.onGuess} className="guessBtn">
+        <button onClick={props.guess} className="guessBtn">
           Guess
         </button>
-        <button className="helpBtn">Help</button>
+        <button onClick={props.help} className="helpBtn">
+          Help
+        </button>
       </div>
-    </>
-  );
+    );
+  } else {
+    return (
+      <>
+        <h1>Guess the number game</h1>
+        <p>
+          Welcome to the Guess the number game! Please select the dificulty
+          level and
+        </p>
+        <select onChange={props.init}>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </>
+    );
+  }
 }
